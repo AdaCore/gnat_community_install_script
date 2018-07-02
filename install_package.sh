@@ -30,7 +30,11 @@ install_darwin() {
 }
 
 install_linux() {
-   echo "TODO"
+  chmod +x "$package_file"
+  "$package_file" \
+     --script $script_dir/install_script.qs \
+     --platform minimal \
+     InstallPrefix="$target"
 }
 
 # Make sure the target is nonexistent or empty

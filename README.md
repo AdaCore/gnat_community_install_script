@@ -6,4 +6,10 @@ This contains scripts to automate the installation of GNAT Community.
 
 Launch the script install_package.sh:
 
-``` install_package.sh  <package>  <target_dir> ```
+``` sh install_package.sh  <path_to_package>  <target_dir> ```
+
+## On Windows
+
+From this directory, launch install_package.bat:
+
+``` install_package.bat  <path_to_package>  <target_dir> ```

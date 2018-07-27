@@ -51,6 +51,12 @@ if [ -d "$target" ]; then
   fi
 fi
 
+# Ensure "make" is installed
+if ! command -v make >/dev/null 2>&1 ; then
+  echo "Unable to find 'make' command" >&2
+  exit 1
+fi
+
 case `uname` in
   Darwin) install_darwin;;
   Linux) install_linux;;

@@ -53,7 +53,7 @@ fi
 
 # Ensure "make" is installed
 if ! command -v make >/dev/null 2>&1 ; then
-  echo "Unable to find 'make' command" >&2
+  echo "Unable to find the 'make' command" >&2
   exit 1
 fi
 

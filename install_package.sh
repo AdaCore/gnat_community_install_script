@@ -3,13 +3,14 @@
 script_dir=$(dirname $0)
 
 # Validate the number of arguments
-if [ "$#" -ne 2 ] ; then
-  echo "Usage: $0 <package_file> <target_directory>" >&2
+if [ "$#" -lt 2 ] || [ "$#" -gt 3 ] ; then
+  echo "Usage: $0 <package_file> <target_directory> [<components>]" >&2
   exit 1
 fi
 
 package_file=$1
 target=$2
+components=$3
 
 install_darwin() {
   # Create a mountpoint
@@ -23,7 +24,8 @@ install_darwin() {
   base=` basename $package_file | cut -d'.' -f1 `
   $mountpoint/$base.app/Contents/MacOS/$base \
      --script $script_dir/install_script.qs \
-     InstallPrefix="$target"
+     InstallPrefix="$target" \
+     Components="$components"
 
   umount $mountpoint
   rm -rf $mountpoint
@@ -34,7 +36,8 @@ install_linux() {
   "$package_file" \
      --script $script_dir/install_script.qs \
      --platform minimal \
-     InstallPrefix="$target"
+     InstallPrefix="$target" \
+     Components="$components"
 }
 
 # Make sure the target is nonexistent or empty

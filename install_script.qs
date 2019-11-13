@@ -1,4 +1,5 @@
 var install_dir = installer.value("InstallPrefix")
+var components  = installer.value("Components")
 
 function Controller() {
     installer.autoRejectMessageBoxes();
@@ -22,6 +23,15 @@ Controller.prototype.TargetDirectoryPageCallback = function()
 }
 
 Controller.prototype.ComponentSelectionPageCallback = function() {
+    if ((components != null) && (components != "")) {
+        var page = gui.currentPageWidget();
+
+        page.deselectAll();
+        complist = components.split(",");
+        for (var i = 0; i < complist.length; i++) {
+            page.selectComponent(complist[i]);
+        }
+    }
     gui.clickButton(buttons.NextButton);
 }
 

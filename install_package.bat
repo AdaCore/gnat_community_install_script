@@ -18,4 +18,4 @@ if exist %target% (
    exit /B 1
 )
 
-%package% --script install_script.qs InstallPrefix="%target% Components="%components%"
+%package% --script install_script.qs InstallPrefix="%target%" Components="%components%"
